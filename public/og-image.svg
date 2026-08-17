@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#0F1113"/>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1D2126" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)" />
+  
+  <!-- Technical frame -->
+  <rect x="60" y="60" width="1080" height="510" fill="none" stroke="#2B3037" stroke-width="1.5"/>
+  <line x1="60" y1="120" x2="1140" y2="120" stroke="#2B3037" stroke-width="1"/>
+  
+  <!-- Corner marks -->
+  <path d="M 50 70 L 70 70 M 60 50 L 60 70" stroke="#FF4D00" stroke-width="2"/>
+  <path d="M 1130 70 L 1150 70 M 1140 50 L 1140 70" stroke="#FF4D00" stroke-width="2"/>
+  <path d="M 50 560 L 70 560 M 60 580 L 60 560" stroke="#FF4D00" stroke-width="2"/>
+  <path d="M 1130 560 L 1150 560 M 1140 580 L 1140 560" stroke="#FF4D00" stroke-width="2"/>
+  
+  <!-- Header meta -->
+  <text x="100" y="100" font-family="'Courier New', monospace" font-size="14" fill="#FF4D00" letter-spacing="4">LABORATORY SPECIFICATION // SWISS ENG. 2026</text>
+  <text x="1100" y="100" text-anchor="end" font-family="'Courier New', monospace" font-size="14" fill="#8E97A0" letter-spacing="2">ZURICH · CH-8005</text>
+  
+  <!-- Brand logo mark -->
+  <circle cx="150" cy="270" r="45" stroke="#FF4D00" stroke-width="4" fill="none"/>
+  <path d="M 130 270 L 170 270 M 150 250 L 150 290" stroke="#E8E6E1" stroke-width="3"/>
+  <circle cx="150" cy="270" r="10" fill="#FF4D00"/>
+  
+  <!-- Title -->
+  <text x="230" y="295" font-family="'Helvetica Neue', Arial, sans-serif" font-size="82" font-weight="800" fill="#E8E6E1" letter-spacing="4">KROMA</text>
+  <text x="590" y="295" font-family="'Courier New', monospace" font-size="28" font-weight="400" fill="#FF4D00" letter-spacing="3">// SOUND LABS</text>
+  
+  <!-- Description -->
+  <text x="100" y="390" font-family="'Helvetica Neue', Arial, sans-serif" font-size="24" fill="#8E97A0" letter-spacing="1">Precision Analog Synthesizers, Discrete Preamps &amp; Master Studio Hardware.</text>
+  <text x="100" y="430" font-family="'Courier New', monospace" font-size="16" fill="#00E599" letter-spacing="2">THD+N &lt; 0.0003% · 100% DISCRETE COMPONENT TOPOLOGY · MIL-SPEC 6061-T6</text>
+  
+  <!-- Waveform graphic at bottom -->
+  <path d="M 100 500 Q 200 450, 300 500 T 500 500 T 700 500 T 900 500 T 1100 500" fill="none" stroke="#FF4D00" stroke-width="3" opacity="0.8"/>
+  <path d="M 100 500 Q 150 420, 200 500 T 300 500 T 400 500 T 500 500 T 600 500 T 700 500 T 800 500 T 900 500 T 1000 500 T 1100 500" fill="none" stroke="#00E599" stroke-width="1.5" opacity="0.5"/>
+</svg>

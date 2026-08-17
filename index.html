@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KROMA — Precision Analog Instruments &amp; Studio Hardware, Zurich</title>
+  <meta name="description" content="KROMA Sound Laboratories designs precision analog synthesizers, discrete tube preamplifiers, and mastering-grade audio hardware in Zurich, Switzerland." />
+  <meta property="og:title" content="KROMA — Precision Analog Instruments &amp; Studio Hardware" />
+  <meta property="og:description" content="Discrete-circuit analog synthesizers and mastering audio hardware from Zurich." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="./og-image.svg" />
+  <meta property="og:url" content="https://temidayoxyz.github.io/kroma/" />
+  <link rel="canonical" href="https://temidayoxyz.github.io/kroma/" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  
+  <!-- Preconnect & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Precision Header -->
+  <header class="header" id="siteHeader">
+    <div class="container header-inner">
+      <a href="#" class="brand" aria-label="KROMA Sound Laboratories">
+        <div class="brand-glyph" aria-hidden="true">
+          <span class="dot"></span>
+        </div>
+        <span class="brand-text">KROMA</span>
+        <span class="brand-sub">LABS // CH</span>
+      </a>
+
+      <nav class="nav" id="mainNav" aria-label="Main Navigation">
+        <a href="#synth-demo" class="nav-link">Live Synth</a>
+        <a href="#instruments" class="nav-link">Instruments</a>
+        <a href="#engineering" class="nav-link">Engineering</a>
+        <a href="#benchmarks" class="nav-link">Benchmarks</a>
+        <a href="#studios" class="nav-link">Studios</a>
+        <a href="#custom" class="nav-cta">Commission</a>
+      </nav>
+
+      <div class="header-status">
+        <span class="status-indicator active" id="audioEngineStatus"></span>
+        <span class="status-text" id="statusLabel">ENGINE 48kHz</span>
+      </div>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Section 1: Hero -->
+    <section class="hero">
+      <div class="hero-grid-bg" aria-hidden="true"></div>
+      <div class="container hero-container">
+        <div class="hero-top-meta">
+          <span class="tag tag--accent">ZURICH // MODEL 2026</span>
+          <span class="tag">100% DISCRETE TOPOLOGY</span>
+          <span class="tag tag--green">THD+N &lt; 0.0003%</span>
+        </div>
+
+        <h1 class="hero-title">
+          Pure Voltage.<br>
+          <span class="hero-title-sub">Zero Digital Compromise.</span>
+        </h1>
+
+        <p class="hero-lead">
+          KROMA builds mastering-grade analog synthesizers and discrete signal hardware for sound designers and recording studios who require relentless acoustic fidelity.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#synth-demo" class="btn btn--primary">
+            <svg class="btn-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <polygon points="4,2 14,8 4,14"/>
+            </svg>
+            Launch Browser Synth
+          </a>
+          <a href="#instruments" class="btn btn--secondary">Explore Hardware Catalog</a>
+        </div>
+
+        <!-- Metric strip -->
+        <div class="metric-strip">
+          <div class="metric-item">
+            <span class="metric-val">134 dB</span>
+            <span class="metric-label">Dynamic Range</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-val">65 V/µs</span>
+            <span class="metric-label">Discrete Slew Rate</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-val">0.05 Hz – 240 kHz</span>
+            <span class="metric-label">Linear Bandwidth</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-val">&lt; 1.2 ps</span>
+            <span class="metric-label">Master Clock Jitter</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Interactive Web Audio Synthesizer -->
+    <section class="section section--dark" id="synth-demo">
+      <div class="container">
+        <div class="section-badge">INTERACTIVE PROTOTYPE</div>
+        <div class="section-head">
+          <h2>K-01 Virtual Voice Architecture</h2>
+          <p>Test the raw mathematical purity of our discrete ladder filter and harmonic wave generator directly in your browser using real-time Web Audio synthesis.</p>
+        </div>
+
+        <!-- Synthesizer Rack Unit UI -->
+        <div class="synth-unit" id="synthConsole">
+          <div class="synth-top-panel">
+            <div class="synth-brand-tag">
+              <span class="tag-model">K-01 // CORE OSC</span>
+              <span class="tag-serial">SN: CH-8005-09</span>
+            </div>
+            <div class="synth-power">
+              <span class="power-lamp active" id="powerLamp"></span>
+              <span class="power-text">ONLINE</span>
+            </div>
+          </div>
+
+          <!-- Oscilloscope Screen & Metering -->
+          <div class="scope-container">
+            <canvas id="oscilloscope" class="oscilloscope-canvas" width="800" height="180"></canvas>
+            <div class="scope-overlay">
+              <span class="scope-grid-label">CH1: 20mV/DIV</span>
+              <span class="scope-grid-label scope-freq" id="freqDisplay">440.0 Hz</span>
+              <span class="scope-grid-label">SWEEP: 5.0ms</span>
+            </div>
+          </div>
+
+          <!-- Synth Controls Matrix -->
+          <div class="synth-controls">
+            <!-- Oscillator Module -->
+            <div class="control-card">
+              <div class="control-card-title">01. OSCILLATOR SHAPE</div>
+              <div class="wave-buttons" role="radiogroup" aria-label="Waveform selection">
+                <button class="wave-btn active" data-wave="sawtooth" aria-pressed="true">SAW</button>
+                <button class="wave-btn" data-wave="square" aria-pressed="false">SQR</button>
+                <button class="wave-btn" data-wave="triangle" aria-pressed="false">TRI</button>
+                <button class="wave-btn" data-wave="sine" aria-pressed="false">SIN</button>
+              </div>
+              <div class="slider-group">
+                <div class="slider-header">
+                  <label for="octaveSlider">OCTAVE TUNE</label>
+                  <span class="slider-val" id="octaveVal">0</span>
+                </div>
+                <input type="range" id="octaveSlider" min="-2" max="2" value="0" step="1" />
+              </div>
+            </div>
+
+            <!-- Filter Module -->
+            <div class="control-card">
+              <div class="control-card-title">02. 24dB LADDER FILTER</div>
+              <div class="slider-group">
+                <div class="slider-header">
+                  <label for="cutoffSlider">CUTOFF FREQUENCY</label>
+                  <span class="slider-val" id="cutoffVal">2400 Hz</span>
+                </div>
+                <input type="range" id="cutoffSlider" min="80" max="16000" value="2400" step="10" />
+              </div>
+              <div class="slider-group">
+                <div class="slider-header">
+                  <label for="resoSlider">RESONANCE (Q)</label>
+                  <span class="slider-val" id="resoVal">4.2</span>
+                </div>
+                <input type="range" id="resoSlider" min="0.1" max="18" value="4.2" step="0.1" />
+              </div>
+            </div>
+
+            <!-- Envelope / VCA Module -->
+            <div class="control-card">
+              <div class="control-card-title">03. ENVELOPE / OUTPUT</div>
+              <div class="slider-group">
+                <div class="slider-header">
+                  <label for="attackSlider">ATTACK TIME</label>
+                  <span class="slider-val" id="attackVal">0.05 s</span>
+                </div>
+                <input type="range" id="attackSlider" min="0.01" max="1.5" value="0.05" step="0.01" />
+              </div>
+              <div class="slider-group">
+                <div class="slider-header">
+                  <label for="volumeSlider">MASTER GAIN</label>
+                  <span class="slider-val" id="volumeVal">75%</span>
+                </div>
+                <input type="range" id="volumeSlider" min="0" max="100" value="75" step="1" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Chromatic Playback Keyboard / Pads -->
+          <div class="synth-keyboard-section">
+            <div class="keyboard-header">
+              <span>CHROMATIC TRIGGER PADS // CLICK OR TAP TO AUDITION</span>
+              <span class="keyboard-shortcut-hint">[KEYBOARD: KEYS A-K or CLICK]</span>
+            </div>
+            <div class="key-bed" id="keyBed">
+              <button class="key key--white" data-note="261.63" data-key="A"><span class="key-name">C4</span></button>
+              <button class="key key--black" data-note="277.18" data-key="W"><span class="key-name">C#</span></button>
+              <button class="key key--white" data-note="293.66" data-key="S"><span class="key-name">D4</span></button>
+              <button class="key key--black" data-note="311.13" data-key="E"><span class="key-name">D#</span></button>
+              <button class="key key--white" data-note="329.63" data-key="D"><span class="key-name">E4</span></button>
+              <button class="key key--white" data-note="349.23" data-key="F"><span class="key-name">F4</span></button>
+              <button class="key key--black" data-note="369.99" data-key="T"><span class="key-name">F#</span></button>
+              <button class="key key--white" data-note="392.00" data-key="G"><span class="key-name">G4</span></button>
+              <button class="key key--black" data-note="415.30" data-key="Y"><span class="key-name">G#</span></button>
+              <button class="key key--white" data-note="440.00" data-key="H"><span class="key-name">A4</span></button>
+              <button class="key key--black" data-note="466.16" data-key="U"><span class="key-name">A#</span></button>
+              <button class="key key--white" data-note="493.88" data-key="J"><span class="key-name">B4</span></button>
+              <button class="key key--white" data-note="523.25" data-key="K"><span class="key-name">C5</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Hardware Instruments Catalog -->
+    <section class="section" id="instruments">
+      <div class="container">
+        <div class="section-badge">HARDWARE CATALOG // 2026 REPERTOIRE</div>
+        <div class="section-head">
+          <h2>Master Instruments</h2>
+          <p>Every KROMA instrument is individually constructed in Zurich, burned-in for 168 continuous hours, and calibrated by hand.</p>
+        </div>
+
+        <div class="catalog-grid">
+          <!-- Instrument 1 -->
+          <article class="instrument-card">
+            <div class="instrument-top">
+              <span class="instrument-id">MODEL K-01</span>
+              <span class="instrument-class">POLYPHONIC SYNTHESIZER</span>
+            </div>
+            <div class="blueprint-visual">
+              <svg viewBox="0 0 400 160" class="blueprint-svg" aria-label="K-01 Circuit Diagram">
+                <rect x="10" y="10" width="380" height="140" fill="#14171A" stroke="#2B3037" stroke-width="1.5"/>
+                <!-- Front panel blueprint detail -->
+                <circle cx="60" cy="50" r="16" stroke="#FF4D00" stroke-width="1.5" fill="none"/>
+                <line x1="60" y1="50" x2="72" y2="40" stroke="#FF4D00" stroke-width="2"/>
+                <circle cx="110" cy="50" r="16" stroke="#8E97A0" stroke-width="1.5" fill="none"/>
+                <circle cx="160" cy="50" r="16" stroke="#8E97A0" stroke-width="1.5" fill="none"/>
+                <rect x="210" y="34" width="160" height="32" stroke="#00E599" stroke-width="1" fill="#0F1113"/>
+                <path d="M220 50 Q260 38, 300 50 T360 50" stroke="#00E599" stroke-width="1.5" fill="none"/>
+                <!-- Bottom key indicator -->
+                <line x1="20" y1="100" x2="380" y2="100" stroke="#2B3037" stroke-width="1"/>
+                <rect x="30" y="105" width="22" height="36" fill="#2B3037"/>
+                <rect x="58" y="105" width="22" height="36" fill="#2B3037"/>
+                <rect x="86" y="105" width="22" height="36" fill="#2B3037"/>
+                <rect x="114" y="105" width="22" height="36" fill="#2B3037"/>
+                <rect x="142" y="105" width="22" height="36" fill="#2B3037"/>
+                <text x="365" y="135" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="10" fill="#8E97A0">8-VOICE DISCRETE</text>
+              </svg>
+            </div>
+            <div class="instrument-body">
+              <h3>K-01 Discrete Polyphonic Synthesizer</h3>
+              <p>Eight fully independent analog voices with discrete dual-VCO topology, temperature-compensated transistor pairs, and switchable 12dB/24dB diode ladders.</p>
+              <div class="spec-table">
+                <div><span>Topology</span><strong>Discrete Dual VCO</strong></div>
+                <div><span>Voices</span><strong>8 Voice True Polyphony</strong></div>
+                <div><span>Chassis</span><strong>6061-T6 Billet Aluminum</strong></div>
+                <div><span>Price</span><strong>CHF 6,400</strong></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Instrument 2 -->
+          <article class="instrument-card">
+            <div class="instrument-top">
+              <span class="instrument-id">MODEL K-VAC</span>
+              <span class="instrument-class">VACUUM TUBE PREAMP</span>
+            </div>
+            <div class="blueprint-visual">
+              <svg viewBox="0 0 400 160" class="blueprint-svg" aria-label="K-VAC Preamp Diagram">
+                <rect x="10" y="10" width="380" height="140" fill="#14171A" stroke="#2B3037" stroke-width="1.5"/>
+                <!-- Dual VU meters -->
+                <circle cx="100" cy="70" r="38" stroke="#FF4D00" stroke-width="1.5" fill="#0F1113"/>
+                <line x1="100" y1="90" x2="80" y2="50" stroke="#FF4D00" stroke-width="1.5"/>
+                <circle cx="200" cy="70" r="38" stroke="#FF4D00" stroke-width="1.5" fill="#0F1113"/>
+                <line x1="200" y1="90" x2="220" y2="48" stroke="#FF4D00" stroke-width="1.5"/>
+                <!-- Step attenuator -->
+                <circle cx="310" cy="70" r="28" stroke="#E8E6E1" stroke-width="2" fill="none"/>
+                <text x="365" y="135" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="10" fill="#8E97A0">CLASS-A DUAL TRIODE</text>
+              </svg>
+            </div>
+            <div class="instrument-body">
+              <h3>K-VAC Class-A Dual Triode Preamp</h3>
+              <p>Mastering-grade microphone and line preamplifier driven by matched NOS 12AX7 and 6922 vacuum tubes, transformer-coupled with Lundahl silver-wound cores.</p>
+              <div class="spec-table">
+                <div><span>Gain Range</span><strong>+72 dB Stepped Gain</strong></div>
+                <div><span>THD+N</span><strong>0.0004% @ +4dBu</strong></div>
+                <div><span>Input Trafo</span><strong>Lundahl Amorphous</strong></div>
+                <div><span>Price</span><strong>CHF 4,850</strong></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Instrument 3 -->
+          <article class="instrument-card">
+            <div class="instrument-top">
+              <span class="instrument-id">MODEL K-MOD</span>
+              <span class="instrument-class">ANALOG FILTER MATRIX</span>
+            </div>
+            <div class="blueprint-visual">
+              <svg viewBox="0 0 400 160" class="blueprint-svg" aria-label="K-MOD Filter Matrix">
+                <rect x="10" y="10" width="380" height="140" fill="#14171A" stroke="#2B3037" stroke-width="1.5"/>
+                <!-- Filter matrix grid -->
+                <circle cx="60" cy="45" r="8" fill="#FF4D00"/>
+                <circle cx="110" cy="45" r="8" stroke="#8E97A0" stroke-width="1.5" fill="none"/>
+                <circle cx="160" cy="45" r="8" fill="#00E599"/>
+                <circle cx="210" cy="45" r="8" stroke="#8E97A0" stroke-width="1.5" fill="none"/>
+                <circle cx="60" cy="95" r="8" stroke="#8E97A0" stroke-width="1.5" fill="none"/>
+                <circle cx="110" cy="95" r="8" fill="#FF4D00"/>
+                <circle cx="160" cy="95" r="8" stroke="#8E97A0" stroke-width="1.5" fill="none"/>
+                <circle cx="210" cy="95" r="8" fill="#00E599"/>
+                <path d="M280 40 C310 90, 330 30, 360 80" stroke="#FF4D00" stroke-width="2" fill="none"/>
+                <text x="365" y="135" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="10" fill="#8E97A0">4-POLE MULTIMODE</text>
+              </svg>
+            </div>
+            <div class="instrument-body">
+              <h3>K-MOD State-Variable Filter Matrix</h3>
+              <p>Dual-channel stereo analog sound-sculpting engine with simultaneous Lowpass, Bandpass, Highpass, and Notch outputs, voltage-controlled resonance, and analog saturation.</p>
+              <div class="spec-table">
+                <div><span>Filter Slopes</span><strong>6, 12, 18, 24 dB/Oct</strong></div>
+                <div><span>Self-Oscillation</span><strong>Linear Sine Wave Output</strong></div>
+                <div><span>CV Routing</span><strong>8-Point Patch Bay</strong></div>
+                <div><span>Price</span><strong>CHF 3,200</strong></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Instrument 4 -->
+          <article class="instrument-card">
+            <div class="instrument-top">
+              <span class="instrument-id">MODEL K-CLK</span>
+              <span class="instrument-class">ATOMIC MASTER CLOCK</span>
+            </div>
+            <div class="blueprint-visual">
+              <svg viewBox="0 0 400 160" class="blueprint-svg" aria-label="K-CLK Clock Diagram">
+                <rect x="10" y="10" width="380" height="140" fill="#14171A" stroke="#2B3037" stroke-width="1.5"/>
+                <!-- Atomic resonator symbol -->
+                <circle cx="200" cy="65" r="30" stroke="#00E599" stroke-width="1.5" fill="none"/>
+                <circle cx="200" cy="65" r="10" fill="#00E599"/>
+                <ellipse cx="200" cy="65" rx="45" ry="18" stroke="#8E97A0" stroke-width="1" fill="none"/>
+                <text x="200" y="125" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#E8E6E1" letter-spacing="2">10.000000 MHz</text>
+                <text x="365" y="135" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="10" fill="#8E97A0">&lt; 1.2ps JITTER</text>
+              </svg>
+            </div>
+            <div class="instrument-body">
+              <h3>K-CLK Rubidium Master Reference Clock</h3>
+              <p>Ultra-low phase noise master sync generator for high-resolution converter arrays and digital audio workstations. Absolute temporal accuracy for multi-channel tracking.</p>
+              <div class="spec-table">
+                <div><span>Outputs</span><strong>8x BNC Isolated Word Clock</strong></div>
+                <div><span>Stability</span><strong>±0.05 ppb Over Temperature</strong></div>
+                <div><span>Phase Jitter</span><strong>&lt; 1.2 picoseconds RMS</strong></div>
+                <div><span>Price</span><strong>CHF 5,100</strong></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Engineering Benchmarks -->
+    <section class="section section--dark" id="benchmarks">
+      <div class="container">
+        <div class="section-badge">LABORATORY VERIFICATION</div>
+        <div class="section-head">
+          <h2>Bench Measurement Standards</h2>
+          <p>Audio Precision APx555 test sweeps verified under calibrated laboratory conditions in Zurich.</p>
+        </div>
+
+        <div class="benchmark-grid">
+          <div class="benchmark-card">
+            <div class="benchmark-header">
+              <span class="benchmark-title">TOTAL HARMONIC DISTORTION + NOISE (THD+N)</span>
+              <span class="benchmark-metric highlight-orange">&lt; 0.00032%</span>
+            </div>
+            <p class="benchmark-desc">Swept 20Hz to 20kHz at +18dBu into a 600Ω termination. Zero audible smearing across third and fifth-order harmonics.</p>
+            <div class="benchmark-bar-container">
+              <div class="benchmark-bar" style="width: 96%;"></div>
+            </div>
+            <span class="benchmark-sub">KROMA DISCRETE (0.0003%) VS INDUSTRY STANDARD (0.005%)</span>
+          </div>
+
+          <div class="benchmark-card">
+            <div class="benchmark-header">
+              <span class="benchmark-title">STEREO CROSSTALK ATTENUATION</span>
+              <span class="benchmark-metric highlight-green">-128 dB @ 10kHz</span>
+            </div>
+            <p class="benchmark-desc">Physical internal shielding separates left and right channel signal paths by 40mm of solid milled alloy partitions.</p>
+            <div class="benchmark-bar-container">
+              <div class="benchmark-bar benchmark-bar--green" style="width: 98%;"></div>
+            </div>
+            <span class="benchmark-sub">CHANNEL SEPARATION ACCURACY: 99.8%</span>
+          </div>
+
+          <div class="benchmark-card">
+            <div class="benchmark-header">
+              <span class="benchmark-title">TRANSIENT SLEW RATE</span>
+              <span class="benchmark-metric highlight-orange">65 V / µs</span>
+            </div>
+            <p class="benchmark-desc">Ultra-fast discrete output stages respond immediately to percussive transients without compression or phase delay.</p>
+            <div class="benchmark-bar-container">
+              <div class="benchmark-bar" style="width: 92%;"></div>
+            </div>
+            <span class="benchmark-sub">SLEW BANDWIDTH: 240 kHz FULL POWER</span>
+          </div>
+
+          <div class="benchmark-card">
+            <div class="benchmark-header">
+              <span class="benchmark-title">THERMAL DRIFT TOLERANCE</span>
+              <span class="benchmark-metric highlight-green">&lt; 0.1 Cent / 8h</span>
+            </div>
+            <p class="benchmark-desc">Precision oven-stabilized differential pairs guarantee that analog oscillators remain in absolute concert pitch.</p>
+            <div class="benchmark-bar-container">
+              <div class="benchmark-bar benchmark-bar--green" style="width: 95%;"></div>
+            </div>
+            <span class="benchmark-sub">CALIBRATED FROM -10°C TO +45°C</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Engineering & Manufacturing Philosophy -->
+    <section class="section" id="engineering">
+      <div class="container">
+        <div class="section-badge">MANUFACTURING DISCIPLINE</div>
+        <div class="section-head">
+          <h2>The Four Pillars of KROMA Engineering</h2>
+          <p>No surface-mount short-cuts in critical audio paths. Every unit is conceived as an heirloom acoustic instrument.</p>
+        </div>
+
+        <div class="pillars-grid">
+          <div class="pillar-cell">
+            <div class="pillar-num">01 // TOPOLOGY</div>
+            <h3>Discrete JFET Signal Paths</h3>
+            <p>Every operational amplifier block is constructed from discrete matched transistor pairs rather than generic integrated circuit chips. This delivers unmatched dynamic breathing room and headroom.</p>
+          </div>
+
+          <div class="pillar-cell">
+            <div class="pillar-num">02 // ALLOY</div>
+            <h3>CNC Billet 6061-T6 Chassis</h3>
+            <p>Each chassis is milled from an 18kg solid block of aircraft-grade aluminum to eliminate mechanical microphonics, EMI interference, and thermal inconsistency.</p>
+          </div>
+
+          <div class="pillar-cell">
+            <div class="pillar-num">03 // POWER</div>
+            <h3>Toroidal Linear Supplies</h3>
+            <p>We refuse high-frequency switching power supplies. Dual oversized toroidal transformers with triple-filtered discrete regulation guarantee an ultra-quiet noise floor below -135dBu.</p>
+          </div>
+
+          <div class="pillar-cell">
+            <div class="pillar-num">04 // CALIBRATION</div>
+            <h3>168-Hour Burn-In Stress Test</h3>
+            <p>Every completed instrument is heat-cycled and acoustically swept in our Zurich test chamber for seven consecutive days before signing the calibration certificate.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Studio Roster & Artist Impressions -->
+    <section class="section section--dark" id="studios">
+      <div class="container">
+        <div class="section-badge">GLOBAL REFERENCE ROSTER</div>
+        <div class="section-head">
+          <h2>In The World's Critical Rooms</h2>
+          <p>Selected sound engineers and producers working with KROMA hardware.</p>
+        </div>
+
+        <div class="studios-grid">
+          <div class="studio-card">
+            <blockquote class="studio-quote">
+              "The K-01 filter does something no other modern analog synthesizer can: it maintains low-end weight while the resonance screams. It has become our primary bass voice for film scores."
+            </blockquote>
+            <div class="studio-author">
+              <strong>Marcus Lindqvist</strong>
+              <span>Lead Sound Designer — Nordiska Film, Stockholm</span>
+            </div>
+          </div>
+
+          <div class="studio-card">
+            <blockquote class="studio-quote">
+              "We placed the K-VAC preamp on vocal chains for acoustic tracking. The Lundahl transformers provide an effortless three-dimensional depth that saves hours of mix equalization."
+            </blockquote>
+            <div class="studio-author">
+              <strong>Elena Vanechka</strong>
+              <span>Mastering Engineer — Apex Sound, Berlin</span>
+            </div>
+          </div>
+
+          <div class="studio-card">
+            <blockquote class="studio-quote">
+              "Having the K-CLK master clock sync our converters brought an undeniable spatial focus to our 64-channel analog mixing console. Everything feels physically locked in place."
+            </blockquote>
+            <div class="studio-author">
+              <strong>Kenji Takahashi</strong>
+              <span>Chief Engineer — Sound City Studios, Tokyo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: Custom Atelier Commissioning -->
+    <section class="section" id="custom">
+      <div class="container">
+        <div class="section-badge">COMMISSIONING // DIRECT FROM ZURICH</div>
+        <div class="section-head">
+          <h2>Commission an Instrument</h2>
+          <p>We build in limited quarterly batches of 30 units. Specify your requirements below for direct consultation with our engineering team.</p>
+        </div>
+
+        <div class="commission-layout">
+          <div class="commission-details">
+            <h3>Atelier Zurich</h3>
+            <p>Instruments are built to order and shipped worldwide in custom Pelican flight cases with individualized Audio Precision calibration test certificates.</p>
+            
+            <dl class="atelier-meta">
+              <div>
+                <dt>LOCATION</dt>
+                <dd>Hardturmstrasse 161<br>CH-8005 Zurich, Switzerland</dd>
+              </div>
+              <div>
+                <dt>CONTACT</dt>
+                <dd><a href="mailto:atelier@kroma-sound.ch">atelier@kroma-sound.ch</a><br>+41 44 280 44 10</dd>
+              </div>
+              <div>
+                <dt>BATCH LEAD TIME</dt>
+                <dd>6–8 Weeks from Commission</dd>
+              </div>
+            </dl>
+          </div>
+
+          <form class="commission-form" id="commissionForm" aria-label="Instrument commission form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="commName">FULL NAME</label>
+                <input type="text" id="commName" name="name" required placeholder="Dr. Andrea Weber" />
+              </div>
+              <div class="form-group">
+                <label for="commEmail">EMAIL ADDRESS</label>
+                <input type="email" id="commEmail" name="email" required placeholder="andrea@studio.ch" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="commModel">SELECT INSTRUMENT / CONFIGURATION</label>
+              <select id="commModel" name="model" required>
+                <option value="K-01">K-01 Discrete Polyphonic Synthesizer (CHF 6,400)</option>
+                <option value="K-VAC">K-VAC Class-A Dual Triode Preamp (CHF 4,850)</option>
+                <option value="K-MOD">K-MOD State-Variable Filter Matrix (CHF 3,200)</option>
+                <option value="K-CLK">K-CLK Rubidium Atomic Master Clock (CHF 5,100)</option>
+                <option value="CUSTOM-RACK">Custom Studio Console / Modular Array</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="commNotes">STUDIO DETAILS &amp; VOLTAGE SPECIFICATION</label>
+              <textarea id="commNotes" name="notes" rows="4" placeholder="Specify mains voltage (230V EU/CH or 115V US), studio setup, and custom finish requests…"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--submit">Submit Commission Inquiry</button>
+            <p class="form-feedback" id="formFeedback">We reply to technical inquiries within 24 working hours.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Technical Spec Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand-col">
+          <div class="brand-text">KROMA</div>
+          <p class="footer-desc">Precision Analog Sound Laboratories. Conceived and engineered in Zurich, Switzerland.</p>
+          <span class="mono-meta">© 2026 KROMA Sound Labs AG — CHE-419.208.112</span>
+        </div>
+
+        <div class="footer-col">
+          <h4>Instruments</h4>
+          <ul>
+            <li><a href="#instruments">K-01 Polyphonic Synth</a></li>
+            <li><a href="#instruments">K-VAC Dual Tube Preamp</a></li>
+            <li><a href="#instruments">K-MOD Filter Matrix</a></li>
+            <li><a href="#instruments">K-CLK Master Reference</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Laboratory</h4>
+          <ul>
+            <li><a href="#synth-demo">Virtual Audio Engine</a></li>
+            <li><a href="#engineering">Discrete Architecture</a></li>
+            <li><a href="#benchmarks">APx555 Benchmarks</a></li>
+            <li><a href="#custom">Atelier Commissions</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Atelier Zurich</h4>
+          <address class="footer-address">
+            Hardturmstrasse 161<br>
+            CH-8005 Zurich<br>
+            Switzerland<br>
+            <a href="mailto:contact@kroma-sound.ch">contact@kroma-sound.ch</a>
+          </address>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="mono-meta">SWISS PRECISION ACOUSTICS // MIL-SPEC COMPLIANCE</span>
+        <a href="https://github.com/temidayoxyz/kroma" class="github-link" target="_blank" rel="noopener noreferrer" aria-label="KROMA on GitHub">
+          <svg class="gh-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+          temidayoxyz/kroma
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
