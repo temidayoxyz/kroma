@@ -147,12 +147,12 @@ function startOscilloscope() {
     analyserNode.getByteTimeDomainData(dataArray)
 
     // Clear background
-    ctx.fillStyle = '#080A0B'
+    ctx.fillStyle = '#0F0E0B'
     ctx.fillRect(0, 0, canvas.width, canvas.height)
 
     // Draw technical grid lines
     ctx.lineWidth = 1
-    ctx.strokeStyle = 'rgba(43, 48, 55, 0.4)'
+    ctx.strokeStyle = 'rgba(201, 195, 180, 0.14)'
     ctx.beginPath()
 
     // Horizontal grid
@@ -169,9 +169,9 @@ function startOscilloscope() {
 
     // Draw green phosphor waveform
     ctx.lineWidth = 2.5
-    ctx.strokeStyle = '#00E599'
+    ctx.strokeStyle = '#00C97F'
     ctx.shadowBlur = 8
-    ctx.shadowColor = 'rgba(0, 229, 153, 0.8)'
+    ctx.shadowColor = 'rgba(0, 201, 127, 0.6)'
 
     ctx.beginPath()
     const sliceWidth = (canvas.width * 1.0) / bufferLength

@@ -16,7 +16,7 @@
   <!-- Preconnect & Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 </head>
 <body>
   <!-- Precision Header -->
@@ -55,22 +55,22 @@
     <section class="hero">
       <div class="hero-grid-bg" aria-hidden="true"></div>
       <div class="container hero-container">
-        <div class="hero-top-meta">
+        <div class="hero-top-meta rv">
           <span class="tag tag--accent">ZURICH // MODEL 2026</span>
           <span class="tag">100% DISCRETE TOPOLOGY</span>
           <span class="tag tag--green">THD+N &lt; 0.0003%</span>
         </div>
 
-        <h1 class="hero-title">
+        <h1 class="hero-title rv">
           Pure Voltage.<br>
           <span class="hero-title-sub">Zero Digital Compromise.</span>
         </h1>
 
-        <p class="hero-lead">
+        <p class="hero-lead rv">
           KROMA builds mastering-grade analog synthesizers and discrete signal hardware for sound designers and recording studios who require relentless acoustic fidelity.
         </p>
 
-        <div class="hero-actions">
+        <div class="hero-actions rv">
           <a href="#synth-demo" class="btn btn--primary">
             <svg class="btn-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
               <polygon points="4,2 14,8 4,14"/>
@@ -81,7 +81,7 @@
         </div>
 
         <!-- Metric strip -->
-        <div class="metric-strip">
+        <div class="metric-strip rv">
           <div class="metric-item">
             <span class="metric-val">134 dB</span>
             <span class="metric-label">Dynamic Range</span>
@@ -106,13 +106,13 @@
     <section class="section section--dark" id="synth-demo">
       <div class="container">
         <div class="section-badge">INTERACTIVE PROTOTYPE</div>
-        <div class="section-head">
+        <div class="section-head rv">
           <h2>K-01 Virtual Voice Architecture</h2>
           <p>Test the raw mathematical purity of our discrete ladder filter and harmonic wave generator directly in your browser using real-time Web Audio synthesis.</p>
         </div>
 
         <!-- Synthesizer Rack Unit UI -->
-        <div class="synth-unit" id="synthConsole">
+        <div class="synth-unit rv" id="synthConsole">
           <div class="synth-top-panel">
             <div class="synth-brand-tag">
               <span class="tag-model">K-01 // CORE OSC</span>
@@ -228,7 +228,7 @@
           <p>Every KROMA instrument is individually constructed in Zurich, burned-in for 168 continuous hours, and calibrated by hand.</p>
         </div>
 
-        <div class="catalog-grid">
+        <div class="catalog-grid rv">
           <!-- Instrument 1 -->
           <article class="instrument-card">
             <div class="instrument-top">
@@ -373,56 +373,40 @@
           <p>Audio Precision APx555 test sweeps verified under calibrated laboratory conditions in Zurich.</p>
         </div>
 
-        <div class="benchmark-grid">
+        <div class="benchmark-grid rv">
           <div class="benchmark-card">
-            <div class="benchmark-header">
-              <span class="benchmark-title">TOTAL HARMONIC DISTORTION + NOISE (THD+N)</span>
-              <span class="benchmark-metric highlight-orange">&lt; 0.00032%</span>
+            <span class="benchmark-index">B-01</span>
+            <div>
+              <div class="benchmark-title">TOTAL HARMONIC DISTORTION + NOISE (THD+N)</div>
+              <p class="benchmark-desc">Swept 20Hz to 20kHz at +18dBu into a 600Ω termination. Zero audible smearing across third and fifth-order harmonics.</p>
             </div>
-            <p class="benchmark-desc">Swept 20Hz to 20kHz at +18dBu into a 600Ω termination. Zero audible smearing across third and fifth-order harmonics.</p>
-            <div class="benchmark-bar-container">
-              <div class="benchmark-bar" style="width: 96%;"></div>
-            </div>
-            <span class="benchmark-sub">KROMA DISCRETE (0.0003%) VS INDUSTRY STANDARD (0.005%)</span>
+            <span class="benchmark-metric highlight-orange">&lt; 0.00032%</span>
           </div>
-
           <div class="benchmark-card">
-            <div class="benchmark-header">
-              <span class="benchmark-title">STEREO CROSSTALK ATTENUATION</span>
-              <span class="benchmark-metric highlight-green">-128 dB @ 10kHz</span>
+            <span class="benchmark-index">B-02</span>
+            <div>
+              <div class="benchmark-title">STEREO CROSSTALK ATTENUATION</div>
+              <p class="benchmark-desc">Physical internal shielding separates left and right channel signal paths by 40mm of solid milled alloy partitions.</p>
             </div>
-            <p class="benchmark-desc">Physical internal shielding separates left and right channel signal paths by 40mm of solid milled alloy partitions.</p>
-            <div class="benchmark-bar-container">
-              <div class="benchmark-bar benchmark-bar--green" style="width: 98%;"></div>
-            </div>
-            <span class="benchmark-sub">CHANNEL SEPARATION ACCURACY: 99.8%</span>
+            <span class="benchmark-metric highlight-green">-128 dB @ 10kHz</span>
           </div>
-
           <div class="benchmark-card">
-            <div class="benchmark-header">
-              <span class="benchmark-title">TRANSIENT SLEW RATE</span>
-              <span class="benchmark-metric highlight-orange">65 V / µs</span>
+            <span class="benchmark-index">B-03</span>
+            <div>
+              <div class="benchmark-title">TRANSIENT SLEW RATE</div>
+              <p class="benchmark-desc">Ultra-fast discrete output stages respond immediately to percussive transients without compression or phase delay.</p>
             </div>
-            <p class="benchmark-desc">Ultra-fast discrete output stages respond immediately to percussive transients without compression or phase delay.</p>
-            <div class="benchmark-bar-container">
-              <div class="benchmark-bar" style="width: 92%;"></div>
-            </div>
-            <span class="benchmark-sub">SLEW BANDWIDTH: 240 kHz FULL POWER</span>
+            <span class="benchmark-metric highlight-orange">65 V / µs</span>
           </div>
-
           <div class="benchmark-card">
-            <div class="benchmark-header">
-              <span class="benchmark-title">THERMAL DRIFT TOLERANCE</span>
-              <span class="benchmark-metric highlight-green">&lt; 0.1 Cent / 8h</span>
+            <span class="benchmark-index">B-04</span>
+            <div>
+              <div class="benchmark-title">THERMAL DRIFT TOLERANCE</div>
+              <p class="benchmark-desc">Precision oven-stabilized differential pairs guarantee that analog oscillators remain in absolute concert pitch.</p>
             </div>
-            <p class="benchmark-desc">Precision oven-stabilized differential pairs guarantee that analog oscillators remain in absolute concert pitch.</p>
-            <div class="benchmark-bar-container">
-              <div class="benchmark-bar benchmark-bar--green" style="width: 95%;"></div>
-            </div>
-            <span class="benchmark-sub">CALIBRATED FROM -10°C TO +45°C</span>
+            <span class="benchmark-metric highlight-green">&lt; 0.1 Cent / 8h</span>
           </div>
         </div>
-      </div>
     </section>
 
     <!-- Section 5: Engineering & Manufacturing Philosophy -->
@@ -434,7 +418,7 @@
           <p>No surface-mount short-cuts in critical audio paths. Every unit is conceived as an heirloom acoustic instrument.</p>
         </div>
 
-        <div class="pillars-grid">
+        <div class="pillars-grid rv">
           <div class="pillar-cell">
             <div class="pillar-num">01 // TOPOLOGY</div>
             <h3>Discrete JFET Signal Paths</h3>
@@ -471,7 +455,7 @@
           <p>Selected sound engineers and producers working with KROMA hardware.</p>
         </div>
 
-        <div class="studios-grid">
+        <div class="studios-grid rv">
           <div class="studio-card">
             <blockquote class="studio-quote">
               "The K-01 filter does something no other modern analog synthesizer can: it maintains low-end weight while the resonance screams. It has become our primary bass voice for film scores."
@@ -514,7 +498,7 @@
           <p>We build in limited quarterly batches of 30 units. Specify your requirements below for direct consultation with our engineering team.</p>
         </div>
 
-        <div class="commission-layout">
+        <div class="commission-layout rv">
           <div class="commission-details">
             <h3>Atelier Zurich</h3>
             <p>Instruments are built to order and shipped worldwide in custom Pelican flight cases with individualized Audio Precision calibration test certificates.</p>
@@ -574,7 +558,7 @@
   <!-- Technical Spec Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-grid">
+      <div class="footer-grid rv">
         <div class="footer-brand-col">
           <div class="brand-text">KROMA</div>
           <p class="footer-desc">Precision Analog Sound Laboratories. Conceived and engineered in Zurich, Switzerland.</p>
