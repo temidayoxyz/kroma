@@ -260,12 +260,27 @@ button { cursor: pointer; background: none; border: none; }
   .header-status { display: none; }
   .mobile-toggle { display: flex; }
 
+  /* backdrop-filter on the header creates a containing block that breaks
+     the fixed-position mobile overlay — use a solid header at this width */
+  .header {
+    backdrop-filter: none;
+    background: var(--bg);
+  }
+
+  /* keep logo + toggle above the overlay so the close button stays clickable */
+  .brand,
+  .mobile-toggle {
+    position: relative;
+    z-index: 1002;
+  }
+
   .nav {
     position: fixed;
     top: 64px;
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 1001;
     background: var(--bg);
     border-bottom: 1px solid var(--border);
     flex-direction: column;
