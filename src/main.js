@@ -363,14 +363,28 @@ function initControls() {
   if (mobileToggle && mainNav) {
     mobileToggle.addEventListener('click', () => {
       const isOpen = mainNav.classList.toggle('open')
+      mobileToggle.classList.toggle('active', isOpen)
       mobileToggle.setAttribute('aria-expanded', isOpen)
+      document.body.style.overflow = isOpen ? 'hidden' : ''
     })
 
     mainNav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mainNav.classList.remove('open')
+        mobileToggle.classList.remove('active')
         mobileToggle.setAttribute('aria-expanded', 'false')
+        document.body.style.overflow = ''
       })
+    })
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && mainNav.classList.contains('open')) {
+        mainNav.classList.remove('open')
+        mobileToggle.classList.remove('active')
+        mobileToggle.setAttribute('aria-expanded', 'false')
+        document.body.style.overflow = ''
+        mobileToggle.focus()
+      }
     })
   }
 
@@ -394,4 +408,22 @@ function initControls() {
 // Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
   initControls()
+  initReveal()
 })
+
+function initReveal() {
+  const els = document.querySelectorAll('.rv')
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(el => el.classList.add('in'))
+    return
+  }
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in')
+        obs.unobserve(entry.target)
+      }
+    })
+  }, { threshold: 0.1 })
+  els.forEach(el => obs.observe(el))
+}
